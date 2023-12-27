@@ -4,7 +4,7 @@ import Navbar from './Components/NavBar/Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom"
 import DailyExpense from './Components/DailyExpense/DailyExpense';
-
+import Investmemts from "./Components/Investments/Investments";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
   <Route
       exact
       path="/"
-      element={<DailyExpense />}
+      element={<Investmemts />}
   />
   <Route
       exact
