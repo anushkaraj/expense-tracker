@@ -6,7 +6,7 @@ const updateSalary = async () => {
    
     if (currentDate.getDate() === lastDayOfMonth) {
       // It's the last day of the month, update salary
-      const response = await fetch('http://localhost:3000/update-salary', {
+      const response = await fetch('http://localhost:3002/update-salary', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

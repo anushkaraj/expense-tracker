@@ -15,7 +15,7 @@ export default function InvestmentsChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiResponse = await axios.get('http://localhost:3000/investments');
+        const apiResponse = await axios.get('http://localhost:3002/investments');
         console.log('Investments result is', apiResponse);
         setResponse(apiResponse);
       } catch (error) {
