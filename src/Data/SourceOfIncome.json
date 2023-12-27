@@ -2,7 +2,7 @@
   "incomeSources": [
     {
       "name": "Salary",
-      "amount": 51050000,
+      "amount": 53000,
       "frequency": "monthly",
       "id": 1
     }
