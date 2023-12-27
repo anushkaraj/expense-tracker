@@ -1,0 +1,10 @@
+{
+  "incomeSources": [
+    {
+      "name": "Salary",
+      "amount": 51050000,
+      "frequency": "monthly",
+      "id": 1
+    }
+  ]
+}
