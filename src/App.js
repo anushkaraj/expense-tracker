@@ -1,35 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './Components/NavBar/Navbar';
-import { BrowserRouter } from 'react-router-dom';
-import { Route, Routes } from "react-router-dom"
-import DailyExpense from './Components/DailyExpense/DailyExpense';
-import Investmemts from "./Components/Investments/Investments";
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [inputNumbers, setInputNumbers] = useState('');
+  const [resultNumbers, setResultNumbers] = useState([]);
+
+  const handleInputChange = (e) => {
+    setInputNumbers(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const baseURL = 'http://192.168.1.104:5000';
+      const response = await axios.post(`${baseURL}/processNumbers`, { numbers: inputNumbers.split(',').map(Number) });
+
+      setResultNumbers(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <BrowserRouter>
-     <Navbar></Navbar>
- <Routes>
-  <Route
-      exact
-      path="/"
-      element={<Investmemts />}
-  />
-  <Route
-      exact
-      path="/Travel_expense"
-      element={<DailyExpense />}
-  />
-  <Route
-      exact
-      path="/contact"
-      element={<DailyExpense />}
-  />
-</Routes>
-     </BrowserRouter>
-   
-  
+    <div className="App">
+      <form onSubmit={handleSubmit}>
+        <label>
+          Enter numbers (comma-separated):
+          <input type="text" value={inputNumbers} onChange={handleInputChange} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+
+      {resultNumbers.length > 0 && (
+        <div>
+          <h2>Result:</h2>
+          <p>{resultNumbers.join(', ')}</p>
+        </div>
+      )}
+    </div>
   );
 }
 
