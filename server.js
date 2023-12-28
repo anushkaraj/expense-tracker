@@ -15,6 +15,6 @@ app.post('/processNumbers', (req, res) => {
   res.json(resultNumbers);
 });
 
-app.listen(port, '192.168.1.104', () => {
-  console.log(`Server is running on http://192.168.1.104:${port}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

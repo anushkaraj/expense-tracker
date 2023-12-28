@@ -3,6 +3,7 @@
   "appName": "expense_tracker",
   "webDir": "build",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "allowNavigation": ["http://192.168.1.104:5000"]
   }
 }
