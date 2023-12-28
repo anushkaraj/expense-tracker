@@ -2,47 +2,51 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import Card from '../../common-ui/card';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-// ... (import statements)
-
 export default function InvestmentsChart(props) {
-  
   const [pieChartData, setPieChartData] = useState(null);
-const response =props.investmentdata;
-console.log("investment data is ",response);
+  const [dataForPieChart, setDataForPieChart] = useState([]);
+  const [categoriesForPieChart, setCategoriesForPieChart] = useState([]);
+
+  const response = props.investmentdata;
+
   useEffect(() => {
-    var data_for_pie_chart = [];
-    var category_for_pie_chart=[];
     console.log('response is ', response);
+
     if (response) {
+      const newDataForPieChart = [];
+      const newCategoriesForPieChart = [];
+
       for (const category in response.investments) {
-       var sum=0;
-        category_for_pie_chart.push(category)
+        let sum = 0;
+        newCategoriesForPieChart.push(category);
+
         for (const year in response.investments[category]) {
-          
           for (const month in response.investments[category][year]) {
-            
             for (const investmentId in response.investments[category][year][month]) {
               const investment = response.investments[category][year][month][investmentId];
-              
-              sum=sum+investment.amount;
+              sum = sum + investment.amount;
             }
           }
         }
-      
-        data_for_pie_chart.push(sum);
+
+        newDataForPieChart.push(sum);
       }
-      if(response)
-      {
+
+      setCategoriesForPieChart(newCategoriesForPieChart);
+      setDataForPieChart(newDataForPieChart);
+
+      if (response) {
         setPieChartData({
-          labels: category_for_pie_chart,
+          labels: newCategoriesForPieChart,
           datasets: [
             {
               label: 'amount',
-              data: data_for_pie_chart,
+              data: newDataForPieChart,
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -64,13 +68,31 @@ console.log("investment data is ",response);
           ],
         });
       }
-    
     }
   }, [response]);
 
   return (
     <>
-      {response&& pieChartData && <Pie data={pieChartData}></Pie>}
+      {response && pieChartData && <Pie data={pieChartData}></Pie>}
+      <div  style={{
+        
+        padding: '15px',
+        margin: '10px',
+        width: '300px',
+        backgroundColor: '#fff',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        borderRadius: '8px',
+        paddingLeft:"27px"
+       
+      }}>
+        {response &&
+        pieChartData &&
+        categoriesForPieChart.map((category, index) => (
+          <Card key={index} category={category} amount={dataForPieChart[index]}></Card>
+        ))}
+
+      </div>
+      
     </>
   );
 }
