@@ -4,11 +4,13 @@ import axios from 'axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import Card from '../../common-ui/card';
 
+
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 export default function InvestmentsChart(props) {
-  const [pieChartData, setPieChartData] = useState(null);
+const [pieChartData, setPieChartData] = useState(null);
   const [dataForPieChart, setDataForPieChart] = useState([]);
   const [categoriesForPieChart, setCategoriesForPieChart] = useState([]);
 
@@ -70,7 +72,7 @@ export default function InvestmentsChart(props) {
       }
     }
   }, [response]);
-
+ 
   return (
     <>
       {response && pieChartData && <Pie data={pieChartData}></Pie>}
@@ -84,11 +86,12 @@ export default function InvestmentsChart(props) {
         borderRadius: '8px',
         paddingLeft:"27px"
        
-      }}>
+      }}
+     >
         {response &&
         pieChartData &&
         categoriesForPieChart.map((category, index) => (
-          <Card key={index} category={category} amount={dataForPieChart[index]}></Card>
+          <Card key={index} category={category} amount={dataForPieChart[index]}  ></Card>
         ))}
 
       </div>

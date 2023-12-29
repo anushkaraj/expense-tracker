@@ -6,7 +6,7 @@ const Investments = () => {
   const [data, setdata]=useState(null);
   // Sample data from React
   const newEquityRecord = {
-    category: 'equity',
+    category: 'liquid',
     year: '2023',
     month: 'January',
     amount: 20000,
@@ -15,21 +15,23 @@ const Investments = () => {
   };
 
   const deleteEquityRecord = {
-    category: 'equity',
+    category: 'liquid',
     year: '2023',
     month: 'January',
     investmentKey: 'investment4', // Replace with the actual investment key
   };
 
   // useEffect(() => {
+  //   console.log("calling this ")
   //   // Add a new equity record
-  //   axios.post('http://localhost:5000/investments/addRecord', newEquityRecord)
+  //   axios.post('http://localhost:5000/travelexpenses/addRecord', newEquityRecord)
   //     .then(response => {
   //       console.log('Add Equity Record Success:', response.data);
   //     })
   //     .catch(error => {
   //       console.error('Add Equity Record Error:', error);
-  //     });
+  //     })
+  //   }, []);
 
   //   // Delete an equity record
   //   axios.post('http://localhost:5000/investments/deleteRecord', deleteEquityRecord)

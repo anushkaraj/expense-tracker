@@ -1,12 +1,16 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function Card(props) {
+  const navigate = useNavigate(); 
+ 
   const handleCardClick = () => {
-    // Perform your onclick operation here
-    console.log("Card clicked! Category:", props.category, "Amount:", props.amount);
-    // Add your custom logic here
+    console.log(" ia ma called");
+    sessionStorage.setItem("category", props.category);
+    // Redirect to a new page with the selected category
+    navigate('/category');
   };
-
+ 
   return (
     <div
       className="row"
