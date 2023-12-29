@@ -31,7 +31,7 @@ const [pieChartData, setPieChartData] = useState(null);
           for (const month in response.investments[category][year]) {
             for (const investmentId in response.investments[category][year][month]) {
               const investment = response.investments[category][year][month][investmentId];
-              sum = sum + investment.amount;
+              sum = sum + Number(investment.amount);
             }
           }
         }

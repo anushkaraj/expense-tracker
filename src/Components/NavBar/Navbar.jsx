@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="menu-icon" onClick={handleShowNavbar}>
           <Hamburger />
         </div>
-        <div className={`nav-elements  ${showNavbar && 'active'}`}>
+        <div className={`nav-elements  ${showNavbar && 'active'}`} style={{zIndex:"1"}}>
           <ul>
             <li>
               <NavLink to="/">Income </NavLink>

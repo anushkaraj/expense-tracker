@@ -23,19 +23,6 @@ function CategoryDetails() {
   }, [category_from_storage]);
 
   console.log(" category", category_from_storage);
-  var data_for_printing = [];
-
-  if (data) {
-    for (const category in data.investments) {
-      if (category === category_from_storage) {
-        for (const year in data.investments[category]) {
-         
-        }
-      }
-    }
-  }
-
-  console.log("data in category is ", data_for_printing);
   return (
     <div>
       {data &&

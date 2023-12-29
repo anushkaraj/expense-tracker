@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './YearCard.css'; // Create a separate CSS file for styling
-
+import DeleteInvestment from '../Components/Investments/DeleteInvestment';
 const YearCard = ({ title, content }) => {
   const [isCollapsed, setCollapsed] = useState(true);
-  
+  const [showDeleteComponent, setShowDeleteComponent]=useState(false);
+  const [dataYearCard, setDataYearCrad]=useState(content);
   const [monthCollapse, setMonthCollapse] = useState(() => {
     const initialMonthCollapse = {};
     Object.keys(content).forEach((month) => {
@@ -11,6 +12,21 @@ const YearCard = ({ title, content }) => {
     });
     return initialMonthCollapse;
   });
+  console.log(" clicked ", showDeleteComponent);
+  const handleNewData =(newData)=>{
+    setDataYearCrad(newData);
+  }
+  const handleDeletefunction =()=>{
+  
+    setShowDeleteComponent(true);
+    console.log("again")
+  }
+//   const handleDelfunction =()=>{
+  
+//     setShowDeleteComponent(false);
+//     setTimeout(()=>{console.log(" show",showDeleteComponent);},5000)
+    
+//   }
   const handleToggle = () => {
     setCollapsed(!isCollapsed);
   };
@@ -47,15 +63,25 @@ const YearCard = ({ title, content }) => {
                 <div className="month-content">
                   {Object.keys(content[month]).map((investmentKey) => {
                     const investment = content[month][investmentKey];
+                    // console.log("in is :",investmentKey)
                     return (
-                      <div key={investmentKey} className="investment-item">
+                      <div key={investmentKey} className="investment-item" >
                         <p style={{display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',}}>
+                                  flexDirection: 'row',
+                                  justifyContent: 'space-between',}}onClick={handleDeletefunction}>
                         <span> ₹{investment.amount}</span>
                           <span>{investment.description}</span>
                           <span>{formatDate(investment.date)}</span>
                         </p>
+                       {showDeleteComponent&&<DeleteInvestment
+                       date={investment.date}
+                       investmentKey={investmentKey} 
+                         show={showDeleteComponent}
+                         onRequestClose={() => {console.log("i am clicked ");setShowDeleteComponent(false);
+                      }}
+                      investmentdeleted={()=>setShowDeleteComponent(false)}
+                      handleNewData={handleNewData}
+        ></DeleteInvestment> }
                       </div>
                     );
                   })}
@@ -66,6 +92,7 @@ const YearCard = ({ title, content }) => {
         </div>
       )}
     </div>
+    
   );
 };
 
