@@ -12,7 +12,7 @@ function CategoryDetails() {
   const [data, setdata] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/investments/getCompleteData')
+    axios.get('https://expense-backend-e411.onrender.com/investments/getCompleteData')
       .then(response => {
         setdata(response.data);
         console.log('Complete JSON Data:', response.data);

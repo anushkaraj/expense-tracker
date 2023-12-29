@@ -110,7 +110,8 @@ const AddInvestmentModal = ({ isOpen, onRequestClose, categories,onDataRecieved 
     // alert(JSON.stringify(inputs));
     // Reset inputs after submitting if needed
     setInputs({});
-    await axios.post('http://localhost:5000/investments/addRecord', inputs)
+    // 'http://localhost:5000
+    await axios.post('https://expense-backend-e411.onrender.com/investments/addRecord', inputs)
         .then(response => {
             setnewdata(response.data);
           console.log('Add Equity Record Success:', response.data);

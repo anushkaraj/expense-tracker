@@ -67,7 +67,7 @@ const Investments = () => {
   // }, []);
   
   useEffect(()=>{
-    axios.get('http://localhost:5000/investments/getCompleteData')
+    axios.get('https://expense-backend-e411.onrender.com/investments/getCompleteData')
       .then(response => {
         setdata(response.data);
         console.log('After addition of investmens:', response.data);

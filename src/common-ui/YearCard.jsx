@@ -5,9 +5,11 @@ const YearCard = ({ title, content }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const [showDeleteComponent, setShowDeleteComponent]=useState(false);
   const [dataYearCard, setDataYearCrad]=useState(content);
+  const [dataToBedeleted, setDatatoBedeleted]=useState(null);
+  const[deleteinvestmentKey,setinvestmentKey]=useState(null);
   const [monthCollapse, setMonthCollapse] = useState(() => {
     const initialMonthCollapse = {};
-    Object.keys(content).forEach((month) => {
+    Object.keys(dataYearCard).forEach((month) => {
       initialMonthCollapse[month] = true;
     });
     return initialMonthCollapse;
@@ -16,8 +18,10 @@ const YearCard = ({ title, content }) => {
   const handleNewData =(newData)=>{
     setDataYearCrad(newData);
   }
-  const handleDeletefunction =()=>{
-  
+  const handleDeletefunction =(investment,investmentKey)=>{
+  console.log("investment",investment)
+  setDatatoBedeleted(investment);
+  setinvestmentKey(investmentKey);
     setShowDeleteComponent(true);
     console.log("again")
   }
@@ -54,28 +58,28 @@ const YearCard = ({ title, content }) => {
       </div>
       {!isCollapsed && (
         <div className="card-content">
-          {Object.keys(content).map((month) => (
+          {Object.keys(dataYearCard).map((month) => (
             <div key={month} className="month-container">
               <div className="month-header" onClick={() => handleMonthToggle(month)}>
                 <h4>{month}</h4>
               </div>
               {monthCollapse[month] && (
                 <div className="month-content">
-                  {Object.keys(content[month]).map((investmentKey) => {
-                    const investment = content[month][investmentKey];
-                    // console.log("in is :",investmentKey)
+                  {Object.keys(dataYearCard[month]).map((investmentKey) => {
+                    const investment = dataYearCard[month][investmentKey];
+                    console.log("in is :",investmentKey)
                     return (
                       <div key={investmentKey} className="investment-item" >
                         <p style={{display: 'flex',
                                   flexDirection: 'row',
-                                  justifyContent: 'space-between',}}onClick={handleDeletefunction}>
+                                  justifyContent: 'space-between',}}onClick={()=>{handleDeletefunction(investment,investmentKey)}}>
                         <span> ₹{investment.amount}</span>
                           <span>{investment.description}</span>
                           <span>{formatDate(investment.date)}</span>
                         </p>
                        {showDeleteComponent&&<DeleteInvestment
-                       date={investment.date}
-                       investmentKey={investmentKey} 
+                       date={dataToBedeleted.date}
+                       investmentKey={deleteinvestmentKey} 
                          show={showDeleteComponent}
                          onRequestClose={() => {console.log("i am clicked ");setShowDeleteComponent(false);
                       }}
