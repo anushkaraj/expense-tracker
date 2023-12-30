@@ -1,10 +1,10 @@
 import React, { useEffect, useState, createContext } from 'react';
 import axios from 'axios';
-import InvestmentsChart from './InvestmentsChart';
+import TravelExpenseChart from './TravelExpenseChart';
 import AddInvestmentModal from "./AddInvestmentModal";
 import './Investments.css';
 export const MyContext = createContext();
-const Investments = () => {
+const TravelExpense = () => {
   const [data, setdata]=useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newInvestment,setnewInvestment]=useState(null);
@@ -80,7 +80,7 @@ const Investments = () => {
   // }, []);
   
   useEffect(()=>{
-    axios.get('http://localhost:5000/travelexpenses/getCompleteData')
+    axios.get('http://localhost:5000/investments/getCompleteData')
       .then(response => {
         setdata(response.data);
         console.log('After addition of investmens:', response.data);
@@ -94,7 +94,7 @@ const Investments = () => {
 
   var categories_array=[];
   if (data) {
-  for (const category in data.travelexpenses) {
+  for (const category in data.travelexpenses ) {
       categories_array.push(category);
   }
 }
@@ -103,7 +103,7 @@ const Investments = () => {
      <div>
       {!isModalOpen &&
        <div >
-       <InvestmentsChart investmentdata={data}></InvestmentsChart>
+       <TravelExpenseChart investmentdata={data}></TravelExpenseChart>
        
        <div style={{backgroundColor:"white", position: 'fixed',bottom: '25px',height:'40px', width: '100%', padding: '10px', textAlign: 'center',left: '-5.5%'  }}>
         <button
@@ -138,4 +138,4 @@ const Investments = () => {
   );
 };
 
-export default Investments;
+export default TravelExpense;

@@ -3,7 +3,7 @@ import { Pie } from "react-chartjs-2";
 import { Doughnut } from "react-chartjs-2";
 import axios from "axios";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import Card from "../../common-ui/card";
+import Card from "./card";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

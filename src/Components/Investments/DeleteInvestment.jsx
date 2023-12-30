@@ -5,7 +5,7 @@ import { RiCloseLine } from "react-icons/ri";
 
 const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investmentdeleted,handleNewData,isdatadeleted}) => {
    
-    var category = sessionStorage.getItem("category");
+    var category = sessionStorage.getItem("categoryInvestments");
     const year = date.substring(0,4);
     const handledeleteinvestment=async()=>{
         investmentdeleted(true);

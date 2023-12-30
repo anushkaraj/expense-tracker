@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './YearCard.css'; // Create a separate CSS file for styling
-import DeleteInvestment from '../Components/travelexpenses/DeleteInvestment';
+import DeleteInvestment from './DeleteInvestment';
 
 const YearCard = ({ title, content, dataisdeleted }) => {
   const [isCollapsed, setCollapsed] = useState(true);

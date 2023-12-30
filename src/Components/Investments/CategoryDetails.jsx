@@ -5,17 +5,17 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CardForCategoryDetails from '../../common-ui/CardForCategoryDetails';
-import YearCard from '../../common-ui/YearCard';
+import YearCard from './YearCard';
 import './CategoryDetails.css';
 
-function CategoryDetails() {
-  var category_from_storage = sessionStorage.getItem("category");
+function CategoryDetailsInvestment() {
+  var category_from_storage = sessionStorage.getItem("categoryInvestments");
   const [data, setdata] = useState(null);
   const [refreshdata,setrefreshData]=useState(false);
   const [haveNodata, sethaveNoData]=useState(false);
   useEffect(() => {
     let isMounted = true;
-  
+    
     const fetchData = async () => {
       try {
         const response = await axios.get('https://expense-backend-e411.onrender.com/investments/getCompleteData');
@@ -79,4 +79,4 @@ function CategoryDetails() {
   //);
 }
 
-export default CategoryDetails;
+export default CategoryDetailsInvestment;

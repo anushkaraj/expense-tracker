@@ -123,7 +123,7 @@ const AddInvestmentModal = ({
     setInputs({});
     // 'http://localhost:5000
     await axios
-      .post("http://localhost:5000/travelexpenses/addRecord", inputs)
+      .post("http://localhost:5000/investments/addRecord", inputs)
       .then((response) => {
         setnewdata(response.data);
         console.log("Add Equity Record Success:", response.data);

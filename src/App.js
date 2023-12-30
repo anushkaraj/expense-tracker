@@ -5,9 +5,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom"
 import DailyExpense from './Components/DailyExpense/DailyExpense';
 import Investmemts from "./Components/Investments/Investments";
-import CategoryDetails from './Components/Investments/CategoryDetails';
+import CategoryDetailsInvestment from './Components/Investments/CategoryDetails';
 import { useEffect } from 'react';
-import TravelExpense from './Components/travelexpenses/Investments';
+import TravelExpense from './Components/TravelExpense/TravelExpense'
+import CategoryDetailsTravelExpense from './Components/TravelExpense/CategoryDetailsTravelExpense';
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +19,8 @@ function App() {
       path="/"
       element={<Investmemts />}
   />
-   <Route path="/category" element={<CategoryDetails />} />
+   <Route path="/category/Investments" element={<CategoryDetailsInvestment />} />
+   <Route path="/category/TravelExpense" element={<CategoryDetailsTravelExpense />} />
   <Route
       exact
       path="/Travel_expense"

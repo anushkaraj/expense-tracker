@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faHeart, faSmile } from '@fortawesome/free-solid-svg-icons';
 import { iconButtonClasses } from "@mui/material";
-import money1 from '../images/1.png'; 
-import money2 from '../images/2.png'; 
-import money3 from '../images/3.png'; 
-import money4 from '../images/4.png'; 
-import money5 from '../images/5.png'; 
-import money6 from '../images/6.png'; 
-import money7 from '../images/7.png'; 
-import money8 from '../images/8.png'; 
+import money1 from '../../images/1.png'; 
+import money2 from '../../images/2.png'; 
+import money3 from '../../images/3.png'; 
+import money4 from '../../images/4.png'; 
+import money5 from '../../images/5.png'; 
+import money6 from '../../images/6.png'; 
+import money7 from '../../images/7.png'; 
+import money8 from '../../images/8.png'; 
 
 const icons = [money1,money2,money3,money4,money5,money6,money7,money8]
 console.log(icons)
@@ -20,9 +20,9 @@ export default function Card(props) {
 
   const handleCardClick = () => {
     console.log("I am called");
-    sessionStorage.setItem("category", props.category);
+    sessionStorage.setItem("categoryInvestments", props.category);
     // Redirect to a new page with the selected category
-    navigate('/category');
+    navigate('/category/Investments');
   };
 
   return (

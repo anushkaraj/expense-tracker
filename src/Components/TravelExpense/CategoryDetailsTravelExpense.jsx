@@ -4,24 +4,24 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import CardForCategoryDetails from '../../common-ui/CardForCategoryDetails';
-import YearCard from '../../common-ui/YearCard';
+import YearCard from './YearCard';
 import './CategoryDetails.css';
 
-function CategoryDetails() {
-  var category_from_storage = sessionStorage.getItem("category");
+function CategoryDetailsTravelExpense() {
+  var category_from_storage = sessionStorage.getItem("categoryTravelExpenses");
   const [data, setdata] = useState(null);
   const [refreshdata,setrefreshData]=useState(false);
   const [haveNodata, sethaveNoData]=useState(false);
   useEffect(() => {
     let isMounted = true;
-  
+    
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://localhost:5000/travelexpenses/getCompleteData');
+        const response = await axios.get('https://expense-backend-e411.onrender.com/investments/getCompleteData');
         if (isMounted) {
           setdata(response.data);
           console.log('Complete JSON Data:', response.data);
+          console.log(" in travel Expense category details");
   
           if (response.data && response.data.travelexpenses && !response.data.travelexpenses[category_from_storage]) {
             sethaveNoData(true);
@@ -42,12 +42,12 @@ function CategoryDetails() {
  
 
   console.log(" category", category_from_storage);
-  console.log(data)
   return (
     <div>
       {data &&
         Object.keys(data.travelexpenses).map((category) => {
           if (category === category_from_storage) {
+           
             return Object.keys(data.travelexpenses[category]).map((year) => (
               <YearCard key={year} title={`Year ${year}`} content={data.travelexpenses[category][year]} dataisdeleted={()=>{ console.log("i am here ", refreshdata);setrefreshData(true)}} />
             ));
@@ -55,10 +55,10 @@ function CategoryDetails() {
           return null;
         })}
      {haveNodata && (
-  <div className="error-container">
-  <div className="emoji">😅</div>
+  <div class="error-container">
+  <div class="emoji">😅</div>
   <h1>Oops! No Data Found !</h1>
-  <p className="tagline"><em>"Please invest in me!🚀"</em></p>
+  <p class="tagline"><em>"Please invest in me!🚀"</em></p>
 </div>
 )}
 
@@ -79,4 +79,4 @@ function CategoryDetails() {
   //);
 }
 
-export default CategoryDetails;
+export default CategoryDetailsTravelExpense;
