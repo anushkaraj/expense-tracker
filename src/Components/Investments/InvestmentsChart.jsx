@@ -140,7 +140,7 @@ export default function InvestmentsChart(props) {
           backgroundColor: "#fff",
           borderRadius: "8px",
          
-          height: "210px",
+          height: "280px",
           overflow: "scroll",
         }}
       >
