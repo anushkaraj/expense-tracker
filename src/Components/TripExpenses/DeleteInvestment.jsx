@@ -5,15 +5,15 @@ import { RiCloseLine } from "react-icons/ri";
 
 const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investmentdeleted,handleNewData,isdatadeleted}) => {
    
-    var category = sessionStorage.getItem("categoryTravelExpenses");
+    var category = sessionStorage.getItem("categoryTripExpenses");
     const year = date.substring(0,4);
     const handledeleteinvestment=async()=>{
         investmentdeleted(true);
         console.log(category,date,investmentKey)
-           await axios.post('http://localhost:5000/travelexpenses/deleteRecord', {category,date,investmentKey})
+           await axios.post('http://localhost:5000/tripexpenses/deleteRecord', {category,date,investmentKey})
       .then(response => {
-        if(response.data.investments && response.data.investments[category])
-        handleNewData(response.data.investments[category][year]);
+        if(response.data.tripexpenses && response.data.tripexpenses[category])
+        handleNewData(response.data.tripexpenses[category][year]);
       else
       handleNewData(null);
        isdatadeleted(true);

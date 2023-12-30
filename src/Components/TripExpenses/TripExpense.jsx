@@ -4,7 +4,7 @@ import TravelExpenseChart from './TravelExpenseChart';
 import AddInvestmentModal from "./AddInvestmentModal";
 import './Investments.css';
 export const MyContext = createContext();
-const TravelExpense = () => {
+const TripExpense = () => {
   const [data, setdata]=useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newInvestment,setnewInvestment]=useState(null);
@@ -51,10 +51,9 @@ const TravelExpense = () => {
   const isEditModalOpen=()=>{
     setisEditbudgetopen(true);
   }
-  const closeEditModal=()=>{
-    setisEditbudgetopen(false);
-  }
-
+ const closeEditModal=()=>{
+  setisEditbudgetopen(false);
+ }
   // useEffect(() => {
   //   console.log("calling this ")
   //   // Add a new equity record
@@ -87,7 +86,7 @@ const TravelExpense = () => {
   // }, []);
   
   useEffect(()=>{
-    axios.get('http://localhost:5000/travelexpenses/getCompleteData')
+    axios.get('http://localhost:5000/tripexpenses/getCompleteData')
       .then(response => {
         setdata(response.data);
         console.log('After addition of investmens:', response.data);
@@ -101,7 +100,7 @@ const TravelExpense = () => {
 
   var categories_array=[];
   if (data) {
-  for (const category in data.travelexpenses ) {
+  for (const category in data.tripexpenses ) {
       categories_array.push(category);
   }
 }
@@ -110,7 +109,7 @@ const TravelExpense = () => {
      <div>
       {!isModalOpen &&
        <div >
-       <TravelExpenseChart investmentdata={data} isEditModalOpen={isEditModalOpen} closeEditModal={closeEditModal} ></TravelExpenseChart>
+       <TravelExpenseChart investmentdata={data} isEditModalOpen={isEditModalOpen}closeEditModal={closeEditModal} ></TravelExpenseChart>
        
        <div style={{backgroundColor:"white",  position: isEditbudgetopen ? 'unset' : 'fixed',bottom: '25px',height:'40px', width: '100%', padding: '10px', textAlign: 'center',left: '-5.5%'  }}>
         <button
@@ -145,4 +144,4 @@ const TravelExpense = () => {
   );
 };
 
-export default TravelExpense;
+export default TripExpense;

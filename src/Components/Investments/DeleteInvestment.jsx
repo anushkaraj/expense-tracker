@@ -36,7 +36,7 @@ const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investment
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-            Are you sure you want to delete the item?
+            Are you sure you want to delete the investment?
           </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>

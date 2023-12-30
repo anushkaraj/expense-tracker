@@ -25,38 +25,38 @@ export default function InvestmentsChart({investmentdata,isEditModalOpen,closeEd
     setopenEditModal(true);
   }
   const isbudgetupdated=()=>{
-    closeEditModal(true)
+    closeEditModal(true);
     setbudgetupdated(true);
+  }
+  const updateBudget=(newbudget)=>{
+    setbudget(newbudget);
   }
   const closeModel=()=>{
     setopenEditModal(false);
      closeEditModal(true);
   }
-  const updateBudget=(newbudget)=>{
-    setbudget(newbudget);
-  }
   useEffect(() => {
     console.log("response is ", response);
 
     if (response) {
-      setbudget(response.travelexpenses.budget);
+      setbudget(response.tripexpenses.budget);
       console.log("b",budget)
       const newDataForPieChart = [];
       const newCategoriesForPieChart = [];
 
-      for (const category in response.travelexpenses) {
+      for (const category in response.tripexpenses) {
         if(category!='budget')
         {
           let sum = 0;
           newCategoriesForPieChart.push(category);
   
-          for (const year in response.travelexpenses[category]) {
-            for (const month in response.travelexpenses[category][year]) {
-              for (const investmentId in response.travelexpenses[category][year][
+          for (const year in response.tripexpenses[category]) {
+            for (const month in response.tripexpenses[category][year]) {
+              for (const investmentId in response.tripexpenses[category][year][
                 month
               ]) {
                 const investment =
-                  response.travelexpenses[category][year][month][investmentId];
+                  response.tripexpenses[category][year][month][investmentId];
                 sum = sum + Number(investment.amount);
               }
             }

@@ -101,14 +101,14 @@ const AddInvestmentModal = ({
   const [inputs, setInputs] = useState({});
   const [newdata, setnewdata] = useState(null);
   const [showaddcategory, setshowaddcategory] = useState(false);
-  const [makecategoryrequired, setcategoryrequired] = useState(true)
+  const [makecategoryrequired, setcategoryrequired] = useState(true);
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
   const handleAddCategoryButton = (event) => {
-    setcategoryrequired(false)
+    setcategoryrequired(false);
     event.stopPropagation();
     event.preventDefault();
     console.log(" clicked buuti");
@@ -123,7 +123,7 @@ const AddInvestmentModal = ({
     setInputs({});
     // 'http://localhost:5000
     await axios
-      .post("http://localhost:5000/travelexpenses/addRecord", inputs)
+      .post("http://localhost:5000/tripexpenses/addRecord", inputs)
       .then((response) => {
         setnewdata(response.data);
         console.log("Add Equity Record Success:", response.data);
@@ -176,7 +176,7 @@ const AddInvestmentModal = ({
                   name="category"
                   value={inputs.category || ""}
                   onChange={handleChange}
-                  required ={makecategoryrequired}
+                  required={makecategoryrequired}
                 >
                   <option value="">Select a category</option>
                   {categories.map(

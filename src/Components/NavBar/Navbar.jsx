@@ -36,13 +36,13 @@ const Navbar = () => {
         <div className={`nav-elements  ${showNavbar && 'active'}`} style={{zIndex:"1"}}>
           <ul>
             <li>
-              <NavLink to="/">Income </NavLink>
+              <NavLink to="/">Investments </NavLink>
             </li>
             <li>
               <NavLink to="/Travel_expense">Travel Expense</NavLink>
             </li>
             <li>
-              <NavLink to="/projects">Investments</NavLink>
+              <NavLink to="/Trip_expense">Trip Expense</NavLink>
             </li>
             <li>
               <NavLink to="/about">Daily Expense </NavLink>

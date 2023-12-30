@@ -9,6 +9,8 @@ import CategoryDetailsInvestment from './Components/Investments/CategoryDetails'
 import { useEffect } from 'react';
 import TravelExpense from './Components/TravelExpense/TravelExpense'
 import CategoryDetailsTravelExpense from './Components/TravelExpense/CategoryDetailsTravelExpense';
+import TripExpense from './Components/TripExpenses/TripExpense';
+import CategoryDetailsTripExpense from './Components/TripExpenses/CategoryDetailsTripExpense'
 function App() {
   return (
     <BrowserRouter>
@@ -21,10 +23,16 @@ function App() {
   />
    <Route path="/category/Investments" element={<CategoryDetailsInvestment />} />
    <Route path="/category/TravelExpense" element={<CategoryDetailsTravelExpense />} />
+   <Route path="/category/TripExpense" element={<CategoryDetailsTripExpense />} />
   <Route
       exact
       path="/Travel_expense"
       element={<TravelExpense />}
+  />
+  <Route
+      exact
+      path="/Trip_expense"
+      element={<TripExpense />}
   />
   <Route
       exact
