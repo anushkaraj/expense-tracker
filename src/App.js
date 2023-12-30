@@ -7,7 +7,7 @@ import DailyExpense from './Components/DailyExpense/DailyExpense';
 import Investmemts from "./Components/Investments/Investments";
 import CategoryDetails from './Components/Investments/CategoryDetails';
 import { useEffect } from 'react';
-import TravelExpense from './Components/TravelExpense';
+import TravelExpense from './Components/travelexpenses/Investments';
 function App() {
   return (
     <BrowserRouter>
