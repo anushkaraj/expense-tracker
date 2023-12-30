@@ -10,7 +10,7 @@ const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investment
     const handledeleteinvestment=async()=>{
         investmentdeleted(true);
         console.log(category,date,investmentKey)
-           await axios.post('http://localhost:5000/investments/deleteRecord', {category,date,investmentKey})
+           await axios.post('http://localhost:5000/travelexpenses/deleteRecord', {category,date,investmentKey})
       .then(response => {
         if(response.data.investments && response.data.investments[category])
         handleNewData(response.data.investments[category][year]);
@@ -30,7 +30,7 @@ const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investment
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>Dialog</h5>
+            <h5 className={styles.heading}>Delete Expense</h5>
           </div>
           <button className={styles.closeBtn} onClick={onRequestClose}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />

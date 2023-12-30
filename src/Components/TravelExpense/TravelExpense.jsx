@@ -10,6 +10,7 @@ const TravelExpense = () => {
   const [newInvestment,setnewInvestment]=useState(null);
   const [newInvestmentAdded, setnewInvestmentAdded]=useState(false);
   const [sharedData, setSharedData] = useState(null);
+  const [isEditbudgetopen,setisEditbudgetopen]=useState(false);
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add('modal-open');
@@ -47,6 +48,9 @@ const TravelExpense = () => {
     console.log(' in handle data');
     setdata(newdata);
   }
+  const isEditModalOpen=()=>{
+    setisEditbudgetopen(true);
+  }
 
   // useEffect(() => {
   //   console.log("calling this ")
@@ -80,7 +84,7 @@ const TravelExpense = () => {
   // }, []);
   
   useEffect(()=>{
-    axios.get('http://localhost:5000/investments/getCompleteData')
+    axios.get('http://localhost:5000/travelexpenses/getCompleteData')
       .then(response => {
         setdata(response.data);
         console.log('After addition of investmens:', response.data);
@@ -103,14 +107,14 @@ const TravelExpense = () => {
      <div>
       {!isModalOpen &&
        <div >
-       <TravelExpenseChart investmentdata={data}></TravelExpenseChart>
+       <TravelExpenseChart investmentdata={data} isEditModalOpen={isEditModalOpen} ></TravelExpenseChart>
        
-       <div style={{backgroundColor:"white", position: 'fixed',bottom: '25px',height:'40px', width: '100%', padding: '10px', textAlign: 'center',left: '-5.5%'  }}>
+       <div style={{backgroundColor:"white",  position: isEditbudgetopen ? 'unset' : 'fixed',bottom: '25px',height:'40px', width: '100%', padding: '10px', textAlign: 'center',left: '-5.5%'  }}>
         <button
           style={{ backgroundColor: "#fef7e5", padding: "10px", fontWeight: 'bold', border: '2px solid black', borderRadius: '5px'}}
           onClick={() => { setIsModalOpen(true) }}
         >
-          Add Investment
+          Add Expense
         </button>
       </div>
       </div>

@@ -11,16 +11,17 @@ import EditIcon from '@mui/icons-material/Edit';
 import EditBudgetModal from './EditBudgetPopup';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function InvestmentsChart(props) {
+export default function InvestmentsChart({investmentdata,isEditModalOpen}) {
   const [pieChartData, setPieChartData] = useState(null);
   const [dataForPieChart, setDataForPieChart] = useState([]);
   const [categoriesForPieChart, setCategoriesForPieChart] = useState([]);
   const chartRef = useRef(null);
-  const response = props.investmentdata;
+  const response = investmentdata;
   const[ budget,setbudget]=useState('');
   const [openEditModal, setopenEditModal]=useState(false);
   const [budgetupdated , setbudgetupdated]=useState(false);
   const handleEditBudget=()=>{
+    isEditModalOpen(true);
     setopenEditModal(true);
   }
   const isbudgetupdated=()=>{

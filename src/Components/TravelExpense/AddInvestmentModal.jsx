@@ -123,7 +123,7 @@ const AddInvestmentModal = ({
     setInputs({});
     // 'http://localhost:5000
     await axios
-      .post("http://localhost:5000/investments/addRecord", inputs)
+      .post("http://localhost:5000/travelexpenses/addRecord", inputs)
       .then((response) => {
         setnewdata(response.data);
         console.log("Add Equity Record Success:", response.data);
@@ -140,7 +140,7 @@ const AddInvestmentModal = ({
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>Add Investment</h5>
+            <h5 className={styles.heading}>Add Expense</h5>
           </div>
           <button className={styles.closeBtn} onClick={onRequestClose}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
@@ -217,7 +217,7 @@ const AddInvestmentModal = ({
                 />
               </div>
               <button type="submit" className={styles.submitbutton}>
-                Add Investment
+                Add Expense
               </button>
             </form>
           </div>

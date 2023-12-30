@@ -17,7 +17,7 @@ function CategoryDetailsTravelExpense() {
     
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://expense-backend-e411.onrender.com/investments/getCompleteData');
+        const response = await axios.get('http://localhost:5000/travelexpenses/getCompleteData');
         if (isMounted) {
           setdata(response.data);
           console.log('Complete JSON Data:', response.data);

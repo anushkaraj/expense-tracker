@@ -30,7 +30,7 @@ const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investment
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>Dialog</h5>
+            <h5 className={styles.heading}>Delete Investment</h5>
           </div>
           <button className={styles.closeBtn} onClick={onRequestClose}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
