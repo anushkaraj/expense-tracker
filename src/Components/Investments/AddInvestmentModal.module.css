@@ -1,11 +1,13 @@
 .darkBG {
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    transform: translate(-50%, -50%);
-    position: absolute;
-  }
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
   
   .centered {
     position: fixed;
@@ -158,4 +160,14 @@
     border-bottom: 1px solid green;
    margin-top:-10px;
    padding-bottom:0px;
+  }
+  .addCatgoryButton{
+    position: absolute;
+    left: 85%;
+    font-weight: bold;
+    border: 1px solid green;
+    color: green;
+    background-color: white;
+    font-size: 15px;
+    border-radius: 10px;
   }

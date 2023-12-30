@@ -27,7 +27,7 @@ export default function Card(props) {
       onClick={handleCardClick}
     >
       <div>{props.category}</div>
-      <div>{props.amount}</div>
+      <div>₹{props.amount}</div>
     </div>
   );
 }
