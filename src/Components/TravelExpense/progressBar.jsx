@@ -1,5 +1,5 @@
 import MultiProgress, { ProgressComponentProps } from "react-multi-progress";
-
+import "./progressBar.css";
 // for non-TS projects, remove this and other types
 
 
@@ -33,7 +33,7 @@ export function Progress({budget,totalexpense}) {
 					value: remaining,
 					color: "#32cd32",
 					showPercentage: true,
-                    
+                  
 					fontSize: 12,
 					textColor: "white",
 					isBold: true,
@@ -46,6 +46,7 @@ export function Progress({budget,totalexpense}) {
 					textColor: "white",
 					fontSize: 12,
 					isBold: false,
+                    zIndex:'0',
 					className: "my-custom-css-class",
 				},
 			]}
@@ -54,6 +55,7 @@ export function Progress({budget,totalexpense}) {
 			border="1px solid white"
 			className="my-custom-css-class"
 			component={CustomComponent}
+            
 		/>
 	);
 }

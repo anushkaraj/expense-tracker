@@ -6,6 +6,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Card from "./card";
 import styles from './TravelExpenseChart.module.css';
 import { Progress } from "./progressBar";
+import CircleIcon from '@mui/icons-material/Circle';
+import EditIcon from '@mui/icons-material/Edit';
+import EditBudgetModal from './EditBudgetPopup';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function InvestmentsChart(props) {
@@ -15,6 +18,17 @@ export default function InvestmentsChart(props) {
   const chartRef = useRef(null);
   const response = props.investmentdata;
   const[ budget,setbudget]=useState('');
+  const [openEditModal, setopenEditModal]=useState(false);
+  const [budgetupdated , setbudgetupdated]=useState(false);
+  const handleEditBudget=()=>{
+    setopenEditModal(true);
+  }
+  const isbudgetupdated=()=>{
+    setbudgetupdated(true);
+  }
+  const updateBudget=(newbudget)=>{
+    setbudget(newbudget);
+  }
   useEffect(() => {
     console.log("response is ", response);
 
@@ -53,38 +67,58 @@ export default function InvestmentsChart(props) {
       
      
     }
-  }, [response]);
+  }, [response,budgetupdated]);
 const totalexpense= dataForPieChart.reduce((acc, amount) => acc + amount, 0);
 console.log(' new data for pie chart',budget);
 
   
   return (
     <>
+  
+      
       <div className={styles.progressBar} >
-        <Progress budget={Number(budget)} totalexpense={totalexpense}></Progress>
-      </div>
-      <div
-        style={{
-          padding: "15px",
-          margin: "10px",
-          width: "300px",
-          backgroundColor: "#fff",
-          borderRadius: "8px",
+      <Progress budget={Number(budget)} totalexpense={totalexpense}></Progress>
+    </div>
+    <div style={{display:"flex",flexDirection:"column",marginLeft:'15%'}}>
+    <div className={styles.circleandp} >
+        <CircleIcon fontSize="10px"  ></CircleIcon>
+        <p className={styles.ptags}>Total Budget  :  ₹{Number(budget)}</p>
+        <div style={{marginLeft:"15px", marginTop:"-3px"}}> <EditIcon fontSize="10px" onClick={handleEditBudget}></EditIcon></div>
+       
+        </div>
+        <div className={styles.circleandp}> <CircleIcon fontSize="10px" sx={{ color: "#32cd32" }} ></CircleIcon>
+        <p className={styles.ptags}>Remaining Budget :  ₹{Number(budget)-totalexpense}</p>
+        </div> 
+        <div className={styles.circleandp} >
+        <CircleIcon fontSize="10px"  sx={{ color: "#FF0000" }}></CircleIcon>
+        <p className={styles.ptags}>Spend :  ₹{totalexpense}</p>
+        </div>
          
-          height: "280px",
-          overflow: "scroll",
-        }}
-      >
-        {response &&
-         
-          categoriesForPieChart.map((category, index) => (
-            <Card
-              key={index}
-              category={category}
-              amount={dataForPieChart[index]}
-            ></Card>
-          ))}
-      </div>
+    </div>
+    <div
+      style={{
+        padding: "15px",
+        margin: "10px",
+        width: "300px",
+        backgroundColor: "#fff",
+        borderRadius: "8px",
+       
+        height: "280px",
+        overflow: "scroll",
+      }}
+    >
+      {response &&
+       
+        categoriesForPieChart.map((category, index) => (
+          <Card
+            key={index}
+            category={category}
+            amount={dataForPieChart[index]}
+          ></Card>
+        ))}
+    </div>
+   {openEditModal&& <EditBudgetModal isopen={openEditModal} setIsOpen={()=>setopenEditModal(false)} isbudgetupdated={isbudgetupdated} newbudget={updateBudget}></EditBudgetModal>}
+   
     </>
   );
 }

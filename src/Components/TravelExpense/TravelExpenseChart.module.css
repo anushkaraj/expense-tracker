@@ -3,4 +3,16 @@
 {
   margin: 30px;
   margin-top: 50px;
+  z-index: 0;
+}
+.ptags{
+  position: relative;
+  top: -18.5px;
+  margin-left: 3px;
+  font-size: 15px;
+}
+.circleandp{
+  margin-bottom: -35px;
+  display: flex;
+  flex-direction: row;
 }
