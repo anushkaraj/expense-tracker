@@ -7,10 +7,12 @@ import DailyExpense from './Components/DailyExpense/DailyExpense';
 import Investmemts from "./Components/Investments/Investments";
 import CategoryDetailsInvestment from './Components/Investments/CategoryDetails';
 import { useEffect } from 'react';
+import Miscellaneous from './Components/Miscellaneous/Miscellaneous';
 import TravelExpense from './Components/TravelExpense/TravelExpense'
 import CategoryDetailsTravelExpense from './Components/TravelExpense/CategoryDetailsTravelExpense';
 import TripExpense from './Components/TripExpenses/TripExpense';
-import CategoryDetailsTripExpense from './Components/TripExpenses/CategoryDetailsTripExpense'
+import CategoryDetailsTripExpense from './Components/TripExpenses/CategoryDetailsTripExpense';
+ import CategoryDetailsmiscellaneous from './Components/Miscellaneous/CategoryDetailsmiscellaneous';
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +26,7 @@ function App() {
    <Route path="/category/Investments" element={<CategoryDetailsInvestment />} />
    <Route path="/category/TravelExpense" element={<CategoryDetailsTravelExpense />} />
    <Route path="/category/TripExpense" element={<CategoryDetailsTripExpense />} />
+   <Route path="/category/Miscellaneous" element={<CategoryDetailsmiscellaneous />} />
   <Route
       exact
       path="/Travel_expense"
@@ -36,8 +39,8 @@ function App() {
   />
   <Route
       exact
-      path="/contact"
-      element={<DailyExpense />}
+      path="/Miscellaneous"
+      element={<Miscellaneous/>}
   />
 </Routes>
      </BrowserRouter>

@@ -45,11 +45,12 @@ const Navbar = () => {
               <NavLink to="/Trip_expense">Trip Expense</NavLink>
             </li>
             <li>
-              <NavLink to="/about">Daily Expense </NavLink>
+              <NavLink to="/miscellaneous">Miscellenous</NavLink>
             </li>
             <li>
-              <NavLink to="/contact">Miscellenous</NavLink>
+              <NavLink to="/about">Daily Expense </NavLink>
             </li>
+           
             <li>
               <NavLink to="/TourExpense">Tour Expense </NavLink>
             </li>
