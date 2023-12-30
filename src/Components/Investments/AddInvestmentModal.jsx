@@ -85,55 +85,58 @@
 
 // export default AddInvestmentModal;
 
-
-
 // @src/components/Modal.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./AddInvestmentModal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 
-const AddInvestmentModal = ({ isOpen, onRequestClose, categories,onDataRecieved ,handleAddedDatanow }) => {
+const AddInvestmentModal = ({
+  isOpen,
+  onRequestClose,
+  categories,
+  onDataRecieved,
+  handleAddedDatanow,
+}) => {
   const [inputs, setInputs] = useState({});
-  const [newdata,setnewdata]= useState(null);
-   const [showaddcategory,setshowaddcategory]=useState(false);
+  const [newdata, setnewdata] = useState(null);
+  const [showaddcategory, setshowaddcategory] = useState(false);
+  const [makecategoryrequired, setcategoryrequired] = useState(true)
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
-  const handleAddCategoryButton=(event)=>{
+  const handleAddCategoryButton = (event) => {
+    setcategoryrequired(false)
     event.stopPropagation();
     event.preventDefault();
     console.log(" clicked buuti");
     setshowaddcategory(true);
-  }
-  const handleSubmit = async(event) => {
+  };
+  const handleSubmit = async (event) => {
     event.preventDefault();
     onRequestClose(false);
-        onDataRecieved(true);
+    onDataRecieved(true);
     // alert(JSON.stringify(inputs));
     // Reset inputs after submitting if needed
     setInputs({});
     // 'http://localhost:5000
-    await axios.post('http://localhost:5000/investments/addRecord', inputs)
-        .then(response => {
-            setnewdata(response.data);
-          console.log('Add Equity Record Success:', response.data);
-          handleAddedDatanow(response.data);
-        })
-        .catch(error => {
-          console.error('Add Equity Record Error:', error);
-        })
-        
-       
+    await axios
+      .post("http://localhost:5000/investments/addRecord", inputs)
+      .then((response) => {
+        setnewdata(response.data);
+        console.log("Add Equity Record Success:", response.data);
+        handleAddedDatanow(response.data);
+      })
+      .catch((error) => {
+        console.error("Add Equity Record Error:", error);
+      });
   };
-  
-
 
   return (
     <>
-      {isOpen && <div className={styles.darkBG}  onClick={onRequestClose}/>}
+      {isOpen && <div className={styles.darkBG} onClick={onRequestClose} />}
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
@@ -152,6 +155,7 @@ const AddInvestmentModal = ({ isOpen, onRequestClose, categories,onDataRecieved 
                   name="amount"
                   value={inputs.amount || ""}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className={styles.formGroup}>
@@ -166,12 +170,13 @@ const AddInvestmentModal = ({ isOpen, onRequestClose, categories,onDataRecieved 
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="category">Category:</label>
-                
+
                 <select
                   id="category"
                   name="category"
                   value={inputs.category || ""}
                   onChange={handleChange}
+                  required ={makecategoryrequired}
                 >
                   <option value="">Select a category</option>
                   {categories.map((category) => (
@@ -180,21 +185,26 @@ const AddInvestmentModal = ({ isOpen, onRequestClose, categories,onDataRecieved 
                     </option>
                   ))}
                 </select>
-                <button  onClick={handleAddCategoryButton} className={styles.addCatgoryButton}>+</button>
-                
+                <button
+                  onClick={handleAddCategoryButton}
+                  className={styles.addCatgoryButton}
+                >
+                  +
+                </button>
               </div>
               {showaddcategory && (
-        <div className={styles.formGroup}>
-          <label htmlFor="category">Category:</label>
-          <input
-            type="text"
-            id="category"
-            name="category"
-            value={inputs.category || ""}
-            onChange={handleChange}
-          />
-        </div>
-      )}
+                <div className={styles.formGroup}>
+                  <label htmlFor="category">Category:</label>
+                  <input
+                    type="text"
+                    id="category"
+                    name="category"
+                    value={inputs.category || ""}
+                    onChange={handleChange}
+                    required={!inputs.category}
+                  />
+                </div>
+              )}
               <div className={styles.formGroup}>
                 <label htmlFor="date">Date:</label>
                 <input
@@ -203,12 +213,14 @@ const AddInvestmentModal = ({ isOpen, onRequestClose, categories,onDataRecieved 
                   name="date"
                   value={inputs.date || ""}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              <button type="submit" className={styles.submitbutton}>Add Investment</button>
+              <button type="submit" className={styles.submitbutton}>
+                Add Investment
+              </button>
             </form>
           </div>
-         
         </div>
       </div>
     </>

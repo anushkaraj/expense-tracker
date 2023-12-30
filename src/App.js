@@ -7,6 +7,7 @@ import DailyExpense from './Components/DailyExpense/DailyExpense';
 import Investmemts from "./Components/Investments/Investments";
 import CategoryDetails from './Components/Investments/CategoryDetails';
 import { useEffect } from 'react';
+import TravelExpense from './Components/TravelExpense';
 function App() {
   return (
     <BrowserRouter>
@@ -21,7 +22,7 @@ function App() {
   <Route
       exact
       path="/Travel_expense"
-      element={<DailyExpense />}
+      element={<TravelExpense />}
   />
   <Route
       exact
