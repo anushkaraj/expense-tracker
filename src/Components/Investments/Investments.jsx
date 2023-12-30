@@ -105,7 +105,7 @@ const Investments = () => {
        <div >
        <InvestmentsChart investmentdata={data}></InvestmentsChart>
        
-       <div style={{backgroundColor:"white", position: 'fixed',bottom: '10px',height:'40px', width: '100%', padding: '10px', textAlign: 'center',left: '-5.5%'  }}>
+       <div style={{backgroundColor:"white", position: 'fixed',bottom: '25px',height:'40px', width: '100%', padding: '10px', textAlign: 'center',left: '-5.5%'  }}>
         <button
           style={{ backgroundColor: "#fef7e5", padding: "10px", fontWeight: 'bold', border: '2px solid black', borderRadius: '5px'}}
           onClick={() => { setIsModalOpen(true) }}
