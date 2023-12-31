@@ -1,0 +1,36 @@
+.collapsible-card {
+    border: 2px solid  #FFFAA0; /* Pink border */
+    background-color: white; /* White background */
+ margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: height 0.3s;
+    max-width: 400px;
+  }
+  
+  .collapsible-card:hover {
+    cursor: pointer;
+  }
+  
+  .card-header {
+    padding: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    cursor: pointer;
+  }
+  
+  .card-content {
+    padding :10px;
+    padding-top: 0px;
+    margin-top: 0px;
+   
+  }
+  
+  .collapsed {
+    height: 60px;
+  }
+  
+  .expanded {
+    height: auto;
+  }
+  
