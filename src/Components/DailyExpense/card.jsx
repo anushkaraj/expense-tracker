@@ -15,14 +15,15 @@ import money8 from '../../images/8.png';
 const icons = [money1,money2,money3,money4,money5,money6,money7,money8]
 console.log(icons)
 export default function Card(props) {
+  
   const navigate = useNavigate();
   const selectedIcon = icons[Math.floor(Math.random() * icons.length)]; // Choose a random icon
-
+  const datatosend=props.datatoshow;
   const handleCardClick = () => {
     console.log("I am called");
     sessionStorage.setItem("categoryInvestments", props.category);
     // Redirect to a new page with the selected category
-    navigate('/category/Investments');
+    navigate('/category/DailyExpense',{state:{datatosend}});
   };
 
   return (

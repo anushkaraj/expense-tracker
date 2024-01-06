@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import styles from "./DeleteInvestment.module.css";
 import { RiCloseLine } from "react-icons/ri";
 
-const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investmentdeleted,handleNewData,isdatadeleted}) => {
+const DeleteInvestment = ({date, investmentKey,category, show, onRequestClose ,investmentdeleted,handleNewData,isdatadeleted}) => {
    
-    var category = sessionStorage.getItem("categorymiscellaneous");
+ //   var category = sessionStorage.getItem("categorymiscellaneous");
     const year = date.substring(0,4);
     const handledeleteinvestment=async()=>{
         investmentdeleted(true);
@@ -13,11 +13,11 @@ const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investment
            await axios.post('http://localhost:5000/miscellaneous/deleteRecord', {category,date,investmentKey})
       .then(response => {
         if(response.data.miscellaneous && response.data.miscellaneous[category])
-        handleNewData(response.data.miscellaneous[category][year]);
+        handleNewData(response.data.miscellaneous);
       else
       handleNewData(null);
-       isdatadeleted(true);
-        console.log('Delete Equity Record Success:');
+       
+        console.log('Delete Equity Record Success:',response);
       })
       .catch(error => {
         console.error('Delete Equity Record Error:', error);

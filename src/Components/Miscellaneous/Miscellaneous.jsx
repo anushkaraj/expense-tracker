@@ -3,14 +3,21 @@ import axios from 'axios';
 import TravelExpenseChart from './TravelExpenseChart';
 import AddInvestmentModal from "./AddInvestmentModal";
 import './Investments.css';
-export const MyContext = createContext();
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import DateSelectionModal from './DateSelectionModal';
+
+
+const MyContext=createContext();
 const Miscellaneous = () => {
+  
   const [data, setdata]=useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newInvestment,setnewInvestment]=useState(null);
   const [newInvestmentAdded, setnewInvestmentAdded]=useState(false);
   const [sharedData, setSharedData] = useState(null);
   const [isEditbudgetopen,setisEditbudgetopen]=useState(false);
+  const [openDateModal,setopenDateModal]=useState(false);
+
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add('modal-open');
@@ -23,6 +30,16 @@ const Miscellaneous = () => {
       document.body.classList.remove('modal-open');
     };
   }, [isModalOpen]);
+
+  const openDataselectionModal=()=>{
+    setopenDateModal(true);
+  }
+  const handleNewData=(newdata)=>{
+    console.log(" in handle newdata ",newdata)
+    setdata(newdata);
+    setopenDateModal(false);
+   
+  }
 
   // // Sample data from React
   // const newEquityRecord = {
@@ -86,30 +103,38 @@ const Miscellaneous = () => {
   // }, []);
   
   useEffect(()=>{
-    axios.get('http://localhost:5000/miscellaneous/getCompleteData')
+   
+      axios.get('http://localhost:5000/miscellaneous/getCompleteData')
       .then(response => {
         setdata(response.data);
-        console.log('After addition of investmens:', response.data);
+        console.log('I am called', response.data);
 
       })
       .catch(error => {
         console.error('Error fetching complete data:', error);
       });
+    }
+    
 
-  },[]);
-
+  ,[]);
+  var budget;
   var categories_array=[];
   if (data) {
   for (const category in data.miscellaneous ) {
+    if(category ==='budget')
+    window.localStorage.setItem('Mbudget', data.miscellaneous.budget);
       categories_array.push(category);
   }
 }
  console.log(" categories is ",categories_array);
   return (  <MyContext.Provider value={{ sharedData, setSharedData }}>
      <div>
-      {!isModalOpen &&
+     <div style={{position:"absolute",marginLeft:"90%",marginTop:"-30px"}}> <FilterAltIcon onClick={openDataselectionModal}></FilterAltIcon></div>
+      {openDateModal  && data && <DateSelectionModal open={openDateModal} setIsOpen={()=>setopenDateModal(false)} data={data.miscellaneous
+} setnewData={handleNewData}></DateSelectionModal>}
+      {!isModalOpen && !openDateModal &&
        <div >
-       <TravelExpenseChart investmentdata={data} isEditModalOpen={isEditModalOpen}closeEditModal={closeEditModal} ></TravelExpenseChart>
+       <TravelExpenseChart budget ={budget} investmentdata={data} isEditModalOpen={isEditModalOpen}closeEditModal={closeEditModal} ></TravelExpenseChart>
        
        <div style={{backgroundColor:"white",  position: isEditbudgetopen ? 'unset' : 'fixed',bottom: '25px',height:'40px', width: '100%', padding: '10px', textAlign: 'center',left: '-5.5%'  }}>
         <button

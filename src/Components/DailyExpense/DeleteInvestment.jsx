@@ -10,7 +10,7 @@ const DeleteInvestment = ({date, investmentKey, show, onRequestClose ,investment
     const handledeleteinvestment=async()=>{
         investmentdeleted(true);
         console.log(category,date,investmentKey)
-           await axios.post('http://localhost:5000/investments/deleteRecord', {category,date,investmentKey})
+           await axios.post('http://localhost:5000/montlyexpense/deleteRecord', {category,date,investmentKey})
       .then(response => {
         if(response.data.investments && response.data.investments[category])
         handleNewData(response.data.investments[category][year]);

@@ -26,6 +26,7 @@ const EditBudgetModal = ({ isopen ,setIsOpen ,isbudgetupdated, newbudget }) => {
           .post("http://localhost:5000/miscellaneous/updatebudgetamount", inputs)
           .then((response) => {
             isbudgetupdated(true);
+            window.localStorage.setItem("Mbudget",inputs.newbudget)
             newbudget(inputs.newbudget);
             console.log("Add Equity Record Success:", response.data);
             

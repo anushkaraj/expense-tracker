@@ -158,6 +158,7 @@ export default function InvestmentsChart(props) {
               key={index}
               category={category}
               amount={dataForPieChart[index]}
+              datatoshow={response.monthlyexpenses}
             ></Card>
           ))}
       </div>

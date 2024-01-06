@@ -15,12 +15,24 @@ console.log(icons)
 export default function Card(props) {
   const navigate = useNavigate();
   const selectedIcon = icons[Math.floor(Math.random() * icons.length)]; // Choose a random icon
-
+  var datatosend=props.datatoshow;
   const handleCardClick = () => {
     console.log("I am called");
-    sessionStorage.setItem("categorymiscellaneous", props.category);
+    
+  Object.keys(datatosend).map(
+      (category) =>{
+        if(category ===props.category)
+        {console.log("category is ",category);
+          datatosend=datatosend[category];
+          console.log("props data to shoe ",datatosend
+          );
+        }
+      });
+      console.log("props data to shoe ",datatosend
+      );
+    // sessionStorage.setItem("categorymiscellaneous", props.category);
     // Redirect to a new page with the selected category
-    navigate('/category/Miscellaneous');
+    navigate('/category/Miscellaneous'  ,{state:{datatosend:datatosend, category: props.category,}});  
   };
 
   return (

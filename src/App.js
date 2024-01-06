@@ -13,6 +13,7 @@ import TripExpense from './Components/TripExpenses/TripExpense';
 import CategoryDetailsTripExpense from './Components/TripExpenses/CategoryDetailsTripExpense';
  import CategoryDetailsmiscellaneous from './Components/Miscellaneous/CategoryDetailsmiscellaneous'; 
  import DailyExpense from './Components/DailyExpense/DailyExpense';
+ import CategoryDetailsDailyExpense from './Components/DailyExpense/CategoryDetails'; 
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ function App() {
    <Route path="/category/TravelExpense" element={<CategoryDetailsTravelExpense />} />
    <Route path="/category/TripExpense" element={<CategoryDetailsTripExpense />} />
    <Route path="/category/Miscellaneous" element={<CategoryDetailsmiscellaneous />} />
+   <Route path="/category/DailyExpense" element={<CategoryDetailsDailyExpense />} />
   <Route
       exact
       path="/Travel_expense"

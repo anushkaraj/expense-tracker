@@ -37,10 +37,17 @@ export default function InvestmentsChart({investmentdata,isEditModalOpen,closeEd
   }
   useEffect(() => {
     console.log("response is ", response);
-
-    if (response) {
-      setbudget(response.miscellaneous.budget);
+if(response && response.miscellaneous && response.miscellaneous.budget)
+{
+  setbudget(response.miscellaneous.budget);
       console.log("b",budget)
+}
+else
+{
+  setbudget(window.localStorage.getItem("Mbudget"))
+}
+    if (response) {
+      
       const newDataForPieChart = [];
       const newCategoriesForPieChart = [];
 
@@ -120,6 +127,7 @@ console.log(' new data for pie chart',budget);
             key={index}
             category={category}
             amount={dataForPieChart[index]}
+            datatoshow={response.miscellaneous}
           ></Card>
         ))}
     </div>

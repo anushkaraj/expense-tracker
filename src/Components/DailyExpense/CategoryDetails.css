@@ -32,3 +32,25 @@ p {
     font-size: 14px;
     color: #555;
 }
+.investment-item {
+    display: flex;
+    flex-direction: row;
+    margin:15px;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: capitalize;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .investmentAmount{
+    position: absolute;
+    left: 80%;
+    margin-top: 30px;
+  }
+  .image {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    margin-top: 30px;
+  }
