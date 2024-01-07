@@ -3,7 +3,7 @@ import styles from "./DateSelectionModal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import InvestmentFilter from './DropDownOptions';
 
-const DateSelectionModal = ({ isopen , setIsOpen,data,setnewData }) => {
+const DateSelectionModal = ({ isopen , setIsOpen,data,setnewData,resetbuttonclicked }) => {
  
 const handleFilteredData=(newdata)=>{
     console.log(" in date sele",newdata);
@@ -21,7 +21,8 @@ setnewData(newdata);
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-           <InvestmentFilter data ={data} SendingfilteredData={handleFilteredData}></InvestmentFilter>
+           <InvestmentFilter data ={data} SendingfilteredData={handleFilteredData} isResetbuttonClicked={()=>{resetbuttonclicked(true)
+          setIsOpen(false)} }></InvestmentFilter>
           </div>
           
         </div>

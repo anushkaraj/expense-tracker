@@ -9,11 +9,16 @@ const DeleteInvestment = ({date, investmentKey,category, show, onRequestClose ,i
     const year = date.substring(0,4);
     const handledeleteinvestment=async()=>{
         investmentdeleted(true);
+        console.log("in delete ")
         console.log(category,date,investmentKey)
            await axios.post('http://localhost:5000/miscellaneous/deleteRecord', {category,date,investmentKey})
       .then(response => {
         if(response.data.miscellaneous && response.data.miscellaneous[category])
-        handleNewData(response.data.miscellaneous);
+        {
+          console.log("data we got after deletion is" ,response.data.miscellaneous[category])
+          handleNewData(response.data.miscellaneous[category]);
+        }
+       
       else
       handleNewData(null);
        

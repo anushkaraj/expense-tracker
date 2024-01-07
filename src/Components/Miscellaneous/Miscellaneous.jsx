@@ -17,7 +17,12 @@ const Miscellaneous = () => {
   const [sharedData, setSharedData] = useState(null);
   const [isEditbudgetopen,setisEditbudgetopen]=useState(false);
   const [openDateModal,setopenDateModal]=useState(false);
-
+  const [isDataFiltered,setIsDatafiltered]=useState();
+  const DataFiltered= sessionStorage.getItem("MisDataFiltered");
+  var FilteredData=sessionStorage.getItem("MisFilteredData");
+  console.log("filtered data ",FilteredData)
+  if(FilteredData!=="undefined")
+  FilteredData  = JSON.parse(FilteredData);
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add('modal-open');
@@ -30,6 +35,9 @@ const Miscellaneous = () => {
       document.body.classList.remove('modal-open');
     };
   }, [isModalOpen]);
+  useEffect(()=>{
+    setIsDatafiltered(sessionStorage.getItem("MisDataFiltered"));
+  },[])
 
   const openDataselectionModal=()=>{
     setopenDateModal(true);
@@ -71,6 +79,9 @@ const Miscellaneous = () => {
  const closeEditModal=()=>{
   setisEditbudgetopen(false);
  }
+ const handleresetbuttonClicked=()=>{
+  setIsDatafiltered(false);
+ }
   // useEffect(() => {
   //   console.log("calling this ")
   //   // Add a new equity record
@@ -102,21 +113,26 @@ const Miscellaneous = () => {
     //   });
   // }, []);
   
+  
   useEffect(()=>{
-   
-      axios.get('http://localhost:5000/miscellaneous/getCompleteData')
-      .then(response => {
-        setdata(response.data);
-        console.log('I am called', response.data);
+    console.log(" is data filtered",typeof(sessionStorage.getItem("MisDataFiltered"))     )
+  if(sessionStorage.getItem("MisDataFiltered")=='false')
+   {
+    axios.get('http://localhost:5000/miscellaneous/getCompleteData')
+    .then(response => {
+      setdata(response.data);
+      console.log('I am called', response.data);
 
-      })
-      .catch(error => {
-        console.error('Error fetching complete data:', error);
-      });
+    })
+    .catch(error => {
+      console.error('Error fetching complete data:', error);
+    });
+   }else{
+    setdata(FilteredData)
+   }
     }
     
-
-  ,[]);
+  ,[isDataFiltered]);
   var budget;
   var categories_array=[];
   if (data) {
@@ -131,7 +147,7 @@ const Miscellaneous = () => {
      <div>
      <div style={{position:"absolute",marginLeft:"90%",marginTop:"-30px"}}> <FilterAltIcon onClick={openDataselectionModal}></FilterAltIcon></div>
       {openDateModal  && data && <DateSelectionModal open={openDateModal} setIsOpen={()=>setopenDateModal(false)} data={data.miscellaneous
-} setnewData={handleNewData}></DateSelectionModal>}
+} setnewData={handleNewData} resetbuttonclicked={handleresetbuttonClicked}></DateSelectionModal>}
       {!isModalOpen && !openDateModal &&
        <div >
        <TravelExpenseChart budget ={budget} investmentdata={data} isEditModalOpen={isEditModalOpen}closeEditModal={closeEditModal} ></TravelExpenseChart>

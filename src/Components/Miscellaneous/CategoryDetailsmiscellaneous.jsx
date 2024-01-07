@@ -90,16 +90,22 @@ function CategoryDetailsmiscellaneous() {
     return formattedDate;
   };
   const handleNewData = (newData) => {
-    setdata(newData);
+    console.log(" After deletion data is ",newData);
+    if(newData)
+    {
+      setdata(newData);
+
+    }
+    else
+    sethaveNoData(true);
+   
   };
-  Object.keys(data).map((category) => {
-    console.log("categpru occccs ", category);
-  });
+
  
   // console.log(" category", category_from_storage);
   return (
     <div>
-      {
+      {!haveNodata &&
           Object.keys(data).map((year) =>
             Object.keys(data[year]).map((month) =>
               Object.keys(data[year][month]).map((investmentKey) => {
@@ -139,7 +145,7 @@ function CategoryDetailsmiscellaneous() {
         <DeleteInvestment
           date={dataToBeDeleted.date}
           investmentKey={deleteInvestmentKey}
-          category={category_selected}
+          category={state.category}
           show={showDeleteComponent}
           onRequestClose={() => {
             setShowDeleteComponent(false);
@@ -148,7 +154,7 @@ function CategoryDetailsmiscellaneous() {
           handleNewData={handleNewData}
         />
       )}
-      {false && (
+      {haveNodata && (
         <div className="error-container">
           <div className="emoji">😅</div>
           <h1>Oops! No Data Found !</h1>

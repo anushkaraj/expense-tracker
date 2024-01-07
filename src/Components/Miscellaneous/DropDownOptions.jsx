@@ -1,12 +1,33 @@
 import React, { useState, useEffect } from "react";
 import styles from "./DateSelectionModal.module.css";
-const InvestmentFilter = ({ data ,SendingfilteredData}) => {
+const InvestmentFilter = ({ data ,SendingfilteredData,isResetbuttonClicked}) => {
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [filteredData, setFilteredData] = useState({});
   const [distinctYears, setDistinctYears] = useState([]);
- 
+  function handleResestButton(e) {
+    e.preventDefault()
+    console.log("reset clicked ");
+    setFilteredData(data);
+    // Set "MisDataFiltered" to false as a string
+    sessionStorage.setItem("MisDataFiltered", false);
+
+    // Set "MisFilteredData" to an empty string as a stringified object
+    sessionStorage.setItem("MisFilteredData", JSON.stringify({}));
+    isResetbuttonClicked(true)
+
+    
+    // Reset selectedYear, selectedMonth, and selectedDate
+    setSelectedYear("");
+    setSelectedMonth("");
+    setSelectedDate("");
+
+    // Submit the form with the filtered data
+     
+}
+
+
   useEffect(() => {
     // Populate the initial year dropdown
     const allYears = getDistinctYears();
@@ -222,6 +243,8 @@ const InvestmentFilter = ({ data ,SendingfilteredData}) => {
     console.log("fil",filteredData);
     var finaloutput={}
     finaloutput["miscellaneous"]=filteredData;
+    sessionStorage.setItem("MisDataFiltered",true);
+    sessionStorage.setItem("MisFilteredData", JSON.stringify(finaloutput));
     SendingfilteredData(finaloutput);
   }
   return (
@@ -260,6 +283,9 @@ const InvestmentFilter = ({ data ,SendingfilteredData}) => {
          <div id="filteredData">{JSON.stringify(filteredData, null, 2)}</div>
         <button type="submit" className={styles.submitbutton} >
           Add Investment
+        </button>
+        <button  className={styles.submitbutton} onClick={handleResestButton} >
+          Reset
         </button>
       </form>
 

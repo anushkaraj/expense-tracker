@@ -15,6 +15,10 @@ import CategoryDetailsTripExpense from './Components/TripExpenses/CategoryDetail
  import DailyExpense from './Components/DailyExpense/DailyExpense';
  import CategoryDetailsDailyExpense from './Components/DailyExpense/CategoryDetails'; 
 function App() {
+    sessionStorage.setItem("MisDataFiltered", false);
+
+    // Set "MisFilteredData" to an empty string as a stringified object
+    sessionStorage.setItem("MisFilteredData", JSON.stringify({}));
   return (
     <BrowserRouter>
      <Navbar></Navbar>
